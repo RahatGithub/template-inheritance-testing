@@ -1,0 +1,51 @@
+{% extends 'base.html' %}
+
+{% block title %}Another{% endblock %}
+
+{% block body %}
+
+    <div class="bg-primary m-5 p-5 d-flex justify-content-around">
+        <a class="btn btn-warning" href="/main">Go to Home</a>
+        <div class="addSection">
+            <button class="btn btn-danger addNewBtn">Add point</button>
+        </div>
+        <h4>Another</h4>
+    </div>
+
+{% endblock %}
+
+{% block js %}
+<script>
+
+    if (localStorage.getItem('myList') == null) {
+        var myList = {};
+    } else {
+        myList = JSON.parse(localStorage.getItem('myList'));
+    }
+
+    updateList();
+
+    /*document.querySelectorAll('.addNewBtn').forEach(item => {
+        item.addEventListener('click', event => {
+            let points = JSON.parse(localStorage.getItem('myList'));
+            points += 1;
+            localStorage.setItem('myList', JSON.stringify(points));
+            updateList();
+        })
+    });*/
+
+    $('.addSection').on('click', 'button.addNewBtn', function () {
+        let points = JSON.parse(localStorage.getItem('myList'));
+        points += 1;
+        localStorage.setItem('myList', JSON.stringify(points));
+        updateList();
+    });
+
+    function updateList(myList) {
+        let points_str = document.getElementById('points');
+        let points = JSON.parse(localStorage.getItem('myList'));
+        points_str.innerHTML = points;
+    }
+
+</script>
+{% endblock %}
