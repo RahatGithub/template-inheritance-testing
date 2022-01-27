@@ -11,6 +11,7 @@
     <div>
         <div class="addSection">
             <button class="btn btn-warning addNewBtn">Add point</button>
+            <button class="btn btn-outline-warning text-dark resetBtn">Reset</button>
         </div>
     </div>
     <h4>Home</h4>
@@ -31,15 +32,6 @@
 
     updateList();
 
-    /*document.querySelectorAll('.addNewBtn').forEach(item => {
-        item.addEventListener('click', event => {
-            let points = JSON.parse(localStorage.getItem('myList'));
-            points += 1;
-            localStorage.setItem('myList', JSON.stringify(points));
-            updateList();
-        })
-    });*/
-
     $('.addSection').on('click', 'button.addNewBtn', function () {
         let points = JSON.parse(localStorage.getItem('myList'));
         points += 1;
@@ -52,6 +44,11 @@
         let points = JSON.parse(localStorage.getItem('myList'));
         points_str.innerHTML = points;
     }
+
+    $('.addSection').on('click', 'button.resetBtn', function () {
+        localStorage.clear();
+        window.location.reload();
+    });
 
 </script>
 {% endblock %}
